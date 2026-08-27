@@ -1,0 +1,130 @@
+---
+import SmoothScroll from './SmoothScroll.tsx';
+import ScrollProgress from './ScrollProgress.tsx';
+import Navbar from './Navbar.tsx';
+import Hero from './Hero.tsx';
+import Manifesto from './Manifesto.tsx';
+import Cardapio from './Cardapio.tsx';
+import Processo from './Processo.tsx';
+import Ambiente from './Ambiente.tsx';
+import Galeria from './Galeria.tsx';
+import Depoimentos from './Depoimentos.tsx';
+import Faq from './Faq.tsx';
+import Localizacao from './Localizacao.tsx';
+import CtaFinal from './CtaFinal.tsx';
+import Footer from './Footer.tsx';
+import ConceptBanner from './ConceptBanner.tsx';
+---
+
+<SmoothScroll client:load />
+<ScrollProgress client:load />
+<Navbar client:load />
+<main id="conteudo">
+  <Hero client:load />
+  <Manifesto client:visible />
+  <Cardapio client:visible />
+  <Processo client:visible />
+  <Ambiente client:visible />
+  <Galeria client:visible />
+  <Depoimentos client:visible />
+  <Faq client:visible />
+  <Localizacao client:visible />
+  <CtaFinal client:visible />
+</main>
+<Footer client:visible />
+<ConceptBanner client:load />
+
+<style is:global>
+  :root {
+    /* Marca — tons de crosta dourada, café e oxblood */
+    --surface-light: #FBF5E9;
+    --surface-elevated-light: #F4EAD3;
+    --text-on-light: #2A1A12;
+    --text-muted-on-light: #6B5644;
+    --heading-on-light: #2A1A12;
+    --accent-visual: #C8923A;
+    --accent-text-on-light: #6B1F1F;
+    --border-on-light: #E8D9B8;
+
+    --surface-dark: #2A1A12;
+    --surface-elevated-dark: #3A2A1E;
+    --text-on-dark: #FBF5E9;
+    --text-muted-on-dark: #C9B79A;
+    --heading-on-dark: #FBF5E9;
+    --accent-text-on-dark: #E0B45A;
+    --border-on-dark: #5A4232;
+
+    --font-display: 'Playfair Display SC', 'Playfair Display', Georgia, serif;
+    --font-body: 'Karla', system-ui, -apple-system, sans-serif;
+
+    --radius-card: 18px;
+    --radius-control: 999px;
+    --shadow-subtle: 0 1px 2px rgba(42, 26, 18, 0.06), 0 8px 24px rgba(42, 26, 18, 0.08);
+    --shadow-elevated: 0 24px 60px -20px rgba(42, 26, 18, 0.28);
+  }
+
+  /* Override do padding-top do layout externo — o ConceptBanner flutua em baixo */
+  body {
+    padding-top: 0 !important;
+    background: var(--surface-light);
+    color: var(--text-on-light);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Tipografia base — cor vem da superfície, nunca global */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0.005em;
+  }
+
+  p { line-height: 1.65; }
+
+  ::selection {
+    background: var(--accent-visual);
+    color: #2A1A12;
+  }
+
+  /* Focus visível e consistente */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid var(--accent-visual);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Textura sutil de papel pergaminho aplicada via background em seções claras */
+  .paper-grain {
+    position: relative;
+  }
+  .paper-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(107, 31, 31, 0.04) 1px, transparent 1px);
+    background-size: 22px 22px;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  /* Utilitários de tipografia (mais confiável que font-[var(...)] do Tailwind) */
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  /* Esconde scrollbar horizontal residual */
+  body { overflow-x: hidden; }
+</style>
